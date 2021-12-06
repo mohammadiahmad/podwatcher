@@ -38,12 +38,12 @@ func main(cmd *cobra.Command, _ []string) {
 
 func newPodCallBack(pods []string) {
 	for _, pod := range pods {
-		fmt.Println("Pod added with address: %s", pod)
+		fmt.Printf("Pod added with address: %s\n", pod)
 	}
 }
 
 func failPodCallBack(pods []string) {
 	for _, pod := range pods {
-		fmt.Println("Pod remove with address: %s", pod)
+		fmt.Printf("Pod remove with address: %s\n", pod)
 	}
 }
