@@ -1,11 +1,24 @@
 package pkg
 
-import "testing"
+import (
+	"testing"
+)
 import (
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetListOfPods(t *testing.T) {
+	t.Run("test localhost headless service ", func(t *testing.T) {
+		headlessSVC := "localhost"
+		_, err := getListOfPods(headlessSVC)
+		assert.NoError(t, err)
+	})
+
+	t.Run("test `nolocalhost` headless service ", func(t *testing.T) {
+		headlessSVC := "nolocalhost"
+		_, err := getListOfPods(headlessSVC)
+		assert.Error(t, err)
+	})
 
 }
 
