@@ -41,5 +41,17 @@ func TestDifference(t *testing.T) {
 }
 
 func TestWatch(t *testing.T) {
+	headlessSVC := "localhost"
+	signalChan := make(chan bool)
+	newPadCallback := func(pods []string) {
+		close(signalChan)
+	}
+	failPadCallback := func(pods []string) {
+		close(signalChan)
+	}
 
+	go Watch(headlessSVC, 1, newPadCallback, failPadCallback)
+
+	msg := <-signalChan
+	assert.Equal(t, false, msg)
 }
